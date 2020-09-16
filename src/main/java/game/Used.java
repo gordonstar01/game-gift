@@ -1,26 +1,12 @@
+
 package game;
 
-import javax.persistence.*;
-import org.springframework.beans.BeanUtils;
-import java.util.List;
+public class Used extends AbstractEvent {
 
-@Entity
-@Table(name="Gift_table")
-public class Gift {
-
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private Long rewardId;
     private Long walletId;
     private String status;
-
-    @PostUpdate
-    public void onPostUpdate(){
-        Used allocated = new Used();
-        BeanUtils.copyProperties(this, allocated);
-        allocated.publishAfterCommit();
-    }
 
     public Long getId() {
         return id;
